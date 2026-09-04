@@ -1,6 +1,8 @@
 import pygame
 import persistence
+import sys
 from objective import ObjectiveManager
+from pathlib import Path
 
 def init():
     pygame.init()
@@ -15,23 +17,23 @@ def init():
     # Assets
     global ICONS, SKINS, BACKGROUND_IMG
     ICONS = {
-        'exit':           'src/exit.png',
-        'coin':           'src/coin.png',
-        'bomb':           'src/bomb.png',
-        'health_potion':  'src/health_potion.png',
-        'max_health_potion':  'src/max_health_potion.png',
-        'reduce_speed_potion':  'src/reduce_speed_potion.png',
-        'buttonRight':    'src/buttonRight.png',
-        'buttonLeft':     'src/buttonLeft.png',
-        'start':          'src/start.png',
-        'lobby':          'src/lobby.png',
-        'chest':          'src/chest.png',
+        'exit':                 get_resource_path('src/exit.png'),
+        'coin':                 get_resource_path('src/coin.png'),
+        'bomb':                 get_resource_path('src/bomb.png'),
+        'health_potion':        get_resource_path('src/health_potion.png'),
+        'max_health_potion':    get_resource_path('src/max_health_potion.png'),
+        'reduce_speed_potion':  get_resource_path('src/reduce_speed_potion.png'),
+        'buttonRight':          get_resource_path('src/buttonRight.png'),
+        'buttonLeft':           get_resource_path('src/buttonLeft.png'),
+        'start':                get_resource_path('src/start.png'),
+        'lobby':                get_resource_path('src/lobby.png'),
+        'chest':                get_resource_path('src/chest.png'),
     }
     SKINS = {
-        'cookie': 'src/cookie.png',
-        'tower':  'src/tower.png',
+        'cookie': get_resource_path('src/cookie.png'),
+        'tower':  get_resource_path('src/tower.png'),
     }
-    BACKGROUND_IMG = pygame.image.load('src/background.png').convert()
+    BACKGROUND_IMG = pygame.image.load(get_resource_path('src/background.png')).convert()
 
     # Game state
     global points, session_high, health, max_health
@@ -119,3 +121,8 @@ def reset():
     REDUCE_SPEED_POTIONS.empty()
     CHESTS.empty()
     OBSTACLES.empty()
+    
+def get_resource_path(relative_path):
+    if getattr(sys, 'frozen', False) and hasattr(sys, "_MEIPASS"):
+        return (Path(sys._MEIPASS) / relative_path).resolve()
+    return (Path(__file__).parent / relative_path).resolve()
