@@ -1,4 +1,4 @@
-high_score.txt
+save_data.json
 __pycache__/
 .venv
 .claude/settings.local.json
