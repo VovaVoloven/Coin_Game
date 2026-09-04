@@ -1,13 +1,6 @@
 high_score.txt
 __pycache__/
-__pycache__/game_elements.cpython-312.pyc
-__pycache__/hud.cpython-312.pyc
-__pycache__/settings.cpython-312.pyc
-save_data.json
-__pycache__/level.cpython-312.pyc
-__pycache__/collisions.cpython-312.pyc
-__pycache__/game_elements.cpython-312.pyc
-__pycache__/hud.cpython-312.pyc
-__pycache__/level.cpython-312.pyc
-__pycache__/lobby.cpython-312.pyc
-__pycache__/settings.cpython-312.pyc
+.venv
+.claude/settings.local.json
+build/
+dist/
